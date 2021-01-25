@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Film app</title>
+    <link rel="stylesheet" href="https://fonts.xz.style/serve/inter.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@exampledev/new.css@1.1.2/new.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+    <style>
+
+        h1, h2, h3 {
+            color: #880303;
+            font-family: "Copperplate", "fantasy", monospace;
+          }
+        .image-cards {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: stretch;
+            align-content: stretch;
+        }
+
+        .image-cards blockquote {
+            flex-grow: 1;
+            display: flex;
+            justify-content: center;
+            padding-left: 0;
+            padding-right: 0;
+        }
+
+        .image-cards img {
+            height: 175px;
+            width: 225px;
+            object-fit: cover;
+        }
+        header {
+          background: #b1c0cf;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>FILM APP</h1>
+    </header>
+
+    <div id="film-app">
+        <h2>Tabella</h2>
+        <table>
+            <tr>
+                <th>Titolo</th>
+                <th>Regista</th>
+                <th>Anno</th>
+            </tr>
+            <tr v-for="film in films">
+                <td>{{ film.titolo }}</td>
+                <td>{{ film.regista }}</td>
+                <td>{{ film.anno }}</td>
+            </tr>
+        </table>
+
+        <h2>Griglia</h2>
+        <div class="image-cards">
+            <blockquote v-for="film in films">
+                <figure>
+                    <img :src="film.image">
+                    <figcaption v-text="film.titolo"></figcaption>
+                    <figcaption v-text="film.regista"></figcaption>
+                    <figcaption v-text="film.anno"></figcaption>
+                </figure>
+            </blockquote>
+        </div>
+    </div>
+
+    <script>
+        var filmaApp = new Vue({
+            el: '#film-app',
+            data: {
+                films: [
+                    { titolo: "A Beautiful Day", regista: "Lynne Ramsay", anno: 2017, image: "https://upload.wikimedia.org/wikipedia/en/8/85/You_Were_Never_Really_Here.png" },
+                    { titolo: "Tolo Tolo", regista: "Luca Medici", anno: 2020, image: "https://upload.wikimedia.org/wikipedia/en/9/98/Tolo_tolo.jpg" },
+                    { titolo: "Parasite", regista: "Bong Joon-ho", anno: 2019, image: "https://upload.wikimedia.org/wikipedia/en/5/53/Parasite_%282019_film%29.png" }
+                ]
+            }
+        })
+    </script>
+</body>
+
+</html>
